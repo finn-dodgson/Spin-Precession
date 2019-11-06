@@ -1,0 +1,19 @@
+from qutip import *
+from numpy import sin, cos, array, sqrt, zeros, pi
+import matplotlib.pyplot as plt
+
+b = Bloch()
+
+sigma_n = zeros([2,2], complex)
+sigma_n[0][0] = cos(theta_m)
+sigma_n[0][1] = exp(-1j*phi_m)*sin(theta_m)
+sigma_n[1][0] = exp(1j*phi_m)*sin(theta_m)
+sigma_n[1][1] = -cos(theta_m)
+
+# Energy eigenstates
+up_n = array([cos(theta_m/2),exp(1j*phi_m)*sin(theta_m/2)], complex)
+down_n = array([sin(theta_m/2),-exp(1j*phi_m)*cos(theta_m/2)], complex)
+
+b.add_vectors(up_n)
+b.add_vectors(down_n)
+b.show()
